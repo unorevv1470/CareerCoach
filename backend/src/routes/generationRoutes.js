@@ -1,0 +1,2 @@
+import {Router} from 'express';import {createResume,createInterview,history} from '../controllers/generationController.js';import {protect} from '../middleware/auth.js';import {generationLimit} from '../middleware/rateLimit.js';
+const r=Router();r.use(protect);r.post('/resume',generationLimit,createResume);r.post('/interview',generationLimit,createInterview);r.get('/history',history);export default r;

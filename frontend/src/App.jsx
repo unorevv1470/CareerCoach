@@ -1,0 +1,3 @@
+import {BrowserRouter,Routes,Route,Navigate} from 'react-router-dom';import {AuthProvider,useAuth} from './context/AuthContext';import Auth from './pages/Auth';import Dashboard from './pages/Dashboard';import ProtectedRoute from './components/ProtectedRoute';
+function Home(){const {token}=useAuth();return token?<ProtectedRoute><Dashboard/></ProtectedRoute>:<Navigate to="/login"/>}
+export default function App(){return <AuthProvider><BrowserRouter><Routes><Route path="/" element={<Home/>}/><Route path="/login" element={<Auth/>}/><Route path="/register" element={<Auth register/>}/><Route path="*" element={<Navigate to="/"/>}/></Routes></BrowserRouter></AuthProvider>}
